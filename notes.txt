@@ -1,0 +1,27 @@
+const searchBox = document.querySelector(".search input");
+
+//This line selects the search input field using its CSS selector and stores it in searchBox
+
+const searchBtn = document.querySelector(".search button");
+
+// this selects the <button> element inside the element with the class "search".
+
+async function checkWeather(city){
+    const response = await fetch(apiUrl + city +`&appid=${apiKey}`); 
+    // Marks the function as asynchronous
+    // fetch sends a GET request to the API URL to fetch data.
+    // await pauses the func exec until the fetch promise resolves
+    
+    
+    var data = await response.json();
+    // stores the parsed JSON data
+    // await pauses again until the prmoise from response.json() resolves.
+
+    console.log(data);
+}
+
+searchBtn.addEventlistener("click", ()=> {
+    checkWeather(searchBox.value);
+})
+
+//It passes the searchBox.value as an argument to the checkWeather function
